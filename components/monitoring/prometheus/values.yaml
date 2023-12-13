@@ -1,0 +1,10 @@
+server:
+  service:
+    type: NodePort
+
+serverFiles:
+  prometheus.yml:
+    scrape_configs:
+      - job_name: "argocd"
+        static_configs:
+          - targets: ['argocd-metrics.argocd.svc.cluster.local:8082']

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loki-deployment
+  labels:
+    app: loki
+    rol: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki-pod
+      rol: monitoring
+  template:
+    metadata:
+      labels:
+        app: loki-pod
+        rol: monitoring
+    spec:
+      containers:
+        - image: grafana/loki:2.9.0
+          command: -config.file=/etc/loki/local-config.yaml
+          volumeMounts:
+            - name: loki-local-config
+              mountPath: /etc/loki/local-config.yaml
+      volumes:
+        - name: loki-local-config
+          configMap:
+            name: cm-loki-config
+

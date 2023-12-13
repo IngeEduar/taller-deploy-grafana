@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server-deployment
+  labels:
+    app: web-server
+    rol: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-server-pod
+      rol: server
+  template:
+    metadata:
+      labels:
+        app: web-server-pod
+        rol: server
+    spec:
+      containers:
+        - image: nginx
+          volumeMounts:
+            - name: web-server-config
+              mountPath: /etc/nginx/conf.d
+            - name: nginx-logs
+              mountPath: /var/log/nginx
+      volumes:
+        - name: web-server-config
+          configMap:
+            name: cm-web-server-config
+        - name: nginx-logs
+          persistentVolumeClaim:
+            claimName: pvc-nginx-logs

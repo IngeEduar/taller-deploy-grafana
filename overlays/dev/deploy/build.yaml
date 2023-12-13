@@ -690,7 +690,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  admin-password: RWcycHBxSmEyYWZMcVhvWHJLUFNOakxyS1hDdnE3cEdFcVlZYjgweQ==
+  admin-password: YlR4dDJpWmY1N3BGb21NcWZwTW96dnJyTERWV3dhNlV0aDBwVmdMbw==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -977,7 +977,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: cefcd6f0cd5d75d8878ed076dc45d5d77d61b9c8ee3b6b857f0e92f908b5d5fb
+        checksum/secret: 126e48bcaa5b016d3d44bccba2c46cc85a57007dc64873661f43bf674772475c
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
@@ -1080,8 +1080,12 @@ spec:
         rol: monitoring
     spec:
       containers:
-      - command: -config.file=/etc/loki/local-config.yaml
+      - command:
+        - /bin/sh
+        - -c
+        - -config.file=/etc/loki/local-config.yaml
         image: grafana/loki:2.9.0
+        name: lok-container
         volumeMounts:
         - mountPath: /etc/loki/local-config.yaml
           name: loki-local-config
@@ -1343,11 +1347,15 @@ spec:
         rol: monitoring
     spec:
       containers:
-      - command: -config.file=/etc/promtail/config.yml
+      - command:
+        - /bin/sh
+        - -c
+        - -config.file=/etc/promtail/config.yml
         image: grafana/promtail:2.9.0
+        name: promtail-container
         volumeMounts:
         - mountPath: /etc/promtail/config.yml
-          name: promtail-local-config
+          name: promtail-config
         - mountPath: /var/log/nginx
           name: nginx-logs
       volumes:
@@ -1379,6 +1387,7 @@ spec:
     spec:
       containers:
       - image: nginx
+        name: web-server-container
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: web-server-config

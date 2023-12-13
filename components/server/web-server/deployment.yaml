@@ -19,6 +19,7 @@ spec:
     spec:
       containers:
         - image: nginx
+          name: web-server-container
           volumeMounts:
             - name: web-server-config
               mountPath: /etc/nginx/conf.d

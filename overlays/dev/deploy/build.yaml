@@ -701,7 +701,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  admin-password: UGlOeXoyZFhJS3RoeW1UNHhMVDltaGlaRGVEczN0V0I3NFFWWXNSbA==
+  admin-password: c0JjZ0NtbGJCUnlxZmRvR0kwbHRLR2ZVaUFDSENFQUc1WklHTzhIZw==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -988,7 +988,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: c45d66731b433a1fa8a9acd65aeb4f533844330a396b26ef1fc415e2e88b9ad5
+        checksum/secret: 6bd623215c0282ed8d084044edd71795099ae6600eae9460961e633df913e204
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
@@ -1092,7 +1092,7 @@ spec:
     spec:
       containers:
       - command:
-        - /bin/sh
+        - /bin/bash
         - -c
         - -config.file=/etc/loki/local-config.yaml
         image: grafana/loki:2.9.0

@@ -21,8 +21,6 @@ spec:
         - image: grafana/loki:2.9.0
           name: lok-container
           command: 
-            - /bin/bash
-            - -c
             - -config.file=/etc/loki/local-config.yaml
           volumeMounts:
             - name: loki-local-config

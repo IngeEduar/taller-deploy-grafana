@@ -24,4 +24,4 @@ spec:
         - containerPort: 9113
         args:
         - -nginx.scrape-uri
-        - http://web-server-service.default.svc.cluster.local/nginx_status
+        - http://web-server-service.default.svc.cluster.local:8080/nginx_status

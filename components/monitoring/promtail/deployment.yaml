@@ -35,4 +35,4 @@ spec:
             name: cm-promtail-config
         - name: nginx-logs
           persistentVolumeClaim:
-            claimName: pvc-nginx-logs
+            claimName: promtail-pvc-nginx-logs

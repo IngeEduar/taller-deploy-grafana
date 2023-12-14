@@ -701,7 +701,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  admin-password: bnhQV0Q0QkJoaWI5OEcxeXVKaVB0WTdhTHZmQWVyeWx3YVBPMTZPOA==
+  admin-password: bk43dXc2WjA5dlBqdUNqeWZseGFWalFEUWpHdUF2RUNNQVJCM2U1Rw==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -927,7 +927,7 @@ spec:
   accessModes:
   - ReadWriteOnce
   capacity:
-    storage: 1Gi
+    storage: 2Gi
   hostPath:
     path: /nginx
 ---
@@ -984,7 +984,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 2Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1012,7 +1012,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: 49adf842a2dc0aff7f1830b328121c5c7d08723899ba4f948c74c9025e0945c6
+        checksum/secret: 9dcfcaf21eb6a9d30ca17b60fff0d5e51d58571c65f9f473ec831185a6e59a9e
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana

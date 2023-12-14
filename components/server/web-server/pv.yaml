@@ -4,7 +4,7 @@ metadata:
   name: nginx-logs-pv
 spec:
   capacity:
-    storage: 2Gi
+    storage: 1.5Gi
   accessModes:
     - ReadWriteOnce
   hostPath:

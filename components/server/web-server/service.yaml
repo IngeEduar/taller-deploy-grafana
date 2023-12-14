@@ -8,7 +8,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: web-server
+    app: web-server-pod
     rol: server
   ports:
     - protocol: TCP

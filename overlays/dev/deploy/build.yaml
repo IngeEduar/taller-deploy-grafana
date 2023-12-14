@@ -701,7 +701,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  admin-password: VlZ2djhjQVltQWI3RlBObmR2cmdqZmR5cW95a0djVHZQT2t3REk2Yw==
+  admin-password: Mks1UVFRRHJuRjJhaGJaVTdlYkFwMlJpcDYzUHR4QWY2dGp4Y0dsMw==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -915,7 +915,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: web-server
+    app: web-server-pod
     rol: server
   type: NodePort
 ---
@@ -1012,7 +1012,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: 8a3d30d894c60989ad9c33a4b8945134918c7acaec6230c0753c5bc56f33ce89
+        checksum/secret: 54ea1d814098d7d500b733c7844c992a6bdab18838cb28b9d3541398c8dd2e77
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana

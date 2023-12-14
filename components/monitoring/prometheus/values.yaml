@@ -8,3 +8,6 @@ serverFiles:
       - job_name: "argocd"
         static_configs:
           - targets: ['argocd-metrics.argocd.svc.cluster.local:8082']
+      - job_name: "web-server"
+        static_configs:
+          - targets: ['web-server-exporter-service.default.svc.cluster.local:9113']

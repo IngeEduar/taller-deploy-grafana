@@ -618,6 +618,10 @@ data:
       static_configs:
       - targets:
         - argocd-metrics.argocd.svc.cluster.local:8082
+    - job_name: web-server
+      static_configs:
+      - targets:
+        - web-server-exporter-service.default.svc.cluster.local:9113
     alerting:
       alertmanagers:
       - kubernetes_sd_configs:
@@ -693,14 +697,20 @@ data:
             root   /usr/share/nginx/html;
             index  index.html index.htm;
         }
+
+        location /nginx_status {
+            stub_status;
+            access_log off;
+            allow all;
+        }
       }
 kind: ConfigMap
 metadata:
-  name: cm-web-server-config-8268954hk8
+  name: cm-web-server-config-dchdghm5f7
 ---
 apiVersion: v1
 data:
-  admin-password: eEd4UTBhUDByOTd2aVF2Q3Y5RFF0WGREaHlCUFpzOHBad0x4UThGaw==
+  admin-password: bUg1cnBPekdPVW5GRnhobFI3cHM0NFhOWW5BWXQ1ZE5RbjB3ZVdTag==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -987,7 +997,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: a6ec536bc6a67ce7e278284a83240da734d4d46e95da41eeaa6392f1f0bc9159
+        checksum/secret: 74301dbaf9f936863b5859c2d6fabbf077e489a7a610ad7cc3bf03e78ce340cb
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
@@ -1399,7 +1409,7 @@ spec:
           name: nginx-logs
       volumes:
       - configMap:
-          name: cm-web-server-config-8268954hk8
+          name: cm-web-server-config-dchdghm5f7
         name: web-server-config
       - name: nginx-logs
         persistentVolumeClaim:

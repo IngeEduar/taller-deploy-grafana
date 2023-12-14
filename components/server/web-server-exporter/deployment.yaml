@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-exporter
+  labels:
+    app: web-server
+    rol: exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-server-pod
+      rol: exporter
+  template:
+    metadata:
+      labels:
+        app: web-server-pod
+        rol: exporter
+    spec:
+      containers:
+      - name: nginx-exporter
+        image: nginx/nginx-prometheus-exporter:0.10.0
+        ports:
+        - containerPort: 9113
+        args:
+        - -nginx.scrape-uri
+        - http://web-server-service.default.svc.cluster.local/nginx_status

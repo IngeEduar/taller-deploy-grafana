@@ -10,7 +10,7 @@ frontend:
   max_outstanding_per_tenant: 4096
 
 common:
-  instance_addr: 127.0.0.1
+  instance_addr: 0.0.0.0
   path_prefix: /tmp/loki
   storage:
     filesystem:
@@ -39,6 +39,6 @@ schema_config:
         period: 24h
 
 ruler:
-  alertmanager_url: http://localhost:9093
+  alertmanager_url: http://prometheus-alertmanager.monitoring.svc.cluster.local:9093
 analytics:
  reporting_enabled: false

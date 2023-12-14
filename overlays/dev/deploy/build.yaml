@@ -485,7 +485,7 @@ data:
       max_outstanding_per_tenant: 4096
 
     common:
-      instance_addr: 127.0.0.1
+      instance_addr: 0.0.0.0
       path_prefix: /tmp/loki
       storage:
         filesystem:
@@ -514,12 +514,12 @@ data:
             period: 24h
 
     ruler:
-      alertmanager_url: http://localhost:9093
+      alertmanager_url: http://prometheus-alertmanager.monitoring.svc.cluster.local:9093
     analytics:
      reporting_enabled: false
 kind: ConfigMap
 metadata:
-  name: cm-loki-config-cb2t2g8ft9
+  name: cm-loki-config-df8gdh5kcm
   namespace: monitoring
 ---
 apiVersion: v1
@@ -700,7 +700,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  admin-password: QWVzV0JrMEFOZFMxZ0tKb3RwNnRuN0hzU3BlNlhoRWZSQmdxMThpYQ==
+  admin-password: Z25CTWI0dzBwSUxUVjVvS2hOWE1PeFhxNXRjdHJncHdxSTFjNEhEUQ==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -987,7 +987,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: 706962e676ddcd6958a9f2b135e827c1fab4efa028303bfa836e01c35fe8463e
+        checksum/secret: a76fbe939606f58594b1b6727b72da4405a4271919460aec1fc3ec5431397b69
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
@@ -1097,7 +1097,7 @@ spec:
           name: loki-local-config
       volumes:
       - configMap:
-          name: cm-loki-config-cb2t2g8ft9
+          name: cm-loki-config-df8gdh5kcm
         name: loki-local-config
 ---
 apiVersion: apps/v1

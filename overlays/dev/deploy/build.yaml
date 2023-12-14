@@ -701,7 +701,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  admin-password: Mks1UVFRRHJuRjJhaGJaVTdlYkFwMlJpcDYzUHR4QWY2dGp4Y0dsMw==
+  admin-password: MFd2eldPbVhpdmFHZnZ0VWlxT05TV0pMUGJGbWVLVjNVTFUyWWloNA==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -752,7 +752,7 @@ spec:
     protocol: TCP
     targetPort: 3100
   selector:
-    app: loki
+    app: loki-pod
     rol: monitoring
   type: NodePort
 ---
@@ -1012,7 +1012,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: 54ea1d814098d7d500b733c7844c992a6bdab18838cb28b9d3541398c8dd2e77
+        checksum/secret: 7f05c49c77754b6ef38081384a79bd5c3cb83a5f697df0627ae2ba4eb5b24c42
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana

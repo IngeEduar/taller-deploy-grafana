@@ -26,7 +26,8 @@ spec:
             - -config.file=/etc/promtail/config.yml
           volumeMounts:
             - name: promtail-config
-              mountPath: /etc/promtail/config.yml
+              mountPath: /etc/promtail
+              subPath: config.yml
             - name: nginx-logs
               mountPath: /var/log/nginx
       volumes:

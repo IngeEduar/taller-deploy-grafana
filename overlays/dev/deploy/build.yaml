@@ -701,7 +701,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  admin-password: NTd6cG9jY21zRWppd045MEN4cFdud3BETm9BbEdqcWxxa0FUOEhmdQ==
+  admin-password: bnhQV0Q0QkJoaWI5OEcxeXVKaVB0WTdhTHZmQWVyeWx3YVBPMTZPOA==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -1012,7 +1012,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: 16a2f02f217ce5306841e15fbe32843b33ea1b50510a81615fd9a5b98930fe5e
+        checksum/secret: 49adf842a2dc0aff7f1830b328121c5c7d08723899ba4f948c74c9025e0945c6
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
@@ -1385,8 +1385,9 @@ spec:
         image: grafana/promtail:2.9.0
         name: promtail-container
         volumeMounts:
-        - mountPath: /etc/promtail/config.yml
+        - mountPath: /etc/promtail
           name: promtail-config
+          subPath: config.yml
         - mountPath: /var/log/nginx
           name: nginx-logs
       volumes:

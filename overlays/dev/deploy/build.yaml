@@ -701,7 +701,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  admin-password: ekh2cVE2QVJRNWR1NTI4b1RHbnpwdDlDNXZ2MWVncUJSSVB5WkRocQ==
+  admin-password: ZVhCdXZxMmhBR0p0ZUt4RnFtd2U0ZjBEaTl3R0hPbDVNbnVBM3IzUg==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -1012,7 +1012,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: e1a006bc885c01fa8a1663979d2051cecff846ecd1ebd9cab473d317c1ecfd24
+        checksum/secret: 3c6720c818b7695e315b796c446665b5c857f53b05b2956c1e43d83f343618a8
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
@@ -1379,8 +1379,7 @@ spec:
     spec:
       containers:
       - command:
-        - /bin/sh
-        - -c
+        - promtail
         - --config.file=/etc/promtail/config.yml
         image: grafana/promtail:2.9.0
         name: promtail-container

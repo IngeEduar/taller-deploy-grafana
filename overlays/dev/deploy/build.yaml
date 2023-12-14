@@ -701,7 +701,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  admin-password: SjFJTk1Qd1FzbG92dk5wcG9LS0NlUXU3N0R4WVVsSkxFU3ZRTkZSWA==
+  admin-password: dW1CYlBpWmxNSmxFZUo0T3VEaHhDRm1iVFVsSUF5M1M5bXNOOHZJRw==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -988,7 +988,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: 5509c62745a7c38bab709e9c6e80cf0f69b242bbb5fe88352a9d5c1f4d040331
+        checksum/secret: ee6f4c8a51d090d2129c1fd5822a0027911aba049a9f38d72a77acdbccab1259
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
@@ -1091,12 +1091,10 @@ spec:
         rol: monitoring
     spec:
       containers:
-      - command:
-        - -config.file=/etc/loki/local-config.yaml
-        image: grafana/loki:2.9.0
+      - image: grafana/loki:2.9.0
         name: lok-container
         volumeMounts:
-        - mountPath: /etc/loki
+        - mountPath: config/config.yaml
           name: loki-local-config
       volumes:
       - configMap:

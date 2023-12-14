@@ -20,11 +20,11 @@ spec:
       containers:
         - image: grafana/loki:2.9.0
           name: lok-container
-          command: 
-            - -config.file=/etc/loki/local-config.yaml
+          # command: 
+          #   - -config.file=/etc/loki/local-config.yaml
           volumeMounts:
             - name: loki-local-config
-              mountPath: /etc/loki
+              mountPath: config/config.yaml
       volumes:
         - name: loki-local-config
           configMap:

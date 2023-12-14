@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - web-server
   - promtail
-#  - web-server-exporter
+  - web-server-exporter

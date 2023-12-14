@@ -710,7 +710,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  admin-password: bUg1cnBPekdPVW5GRnhobFI3cHM0NFhOWW5BWXQ1ZE5RbjB3ZVdTag==
+  admin-password: b0JwQXhRaG10RlI1WGdlekhnNklYcG5PcXRlaWZzUE9ZelhZYlRGNQ==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -914,6 +914,20 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  name: web-server-exporter-service
+spec:
+  ports:
+  - port: 9113
+    protocol: TCP
+    targetPort: 9113
+  selector:
+    app: web-server-pod
+    rol: exporter
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
   labels:
     app: web-server
     rol: server
@@ -997,7 +1011,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: 74301dbaf9f936863b5859c2d6fabbf077e489a7a610ad7cc3bf03e78ce340cb
+        checksum/secret: e75ac826ce234345dd5c548ad4efa38ceb436098a657406f0b33c5908e6879ba
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
@@ -1341,6 +1355,34 @@ spec:
       - name: storage-volume
         persistentVolumeClaim:
           claimName: prometheus-server
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web-server
+    rol: exporter
+  name: nginx-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-server-pod
+      rol: exporter
+  template:
+    metadata:
+      labels:
+        app: web-server-pod
+        rol: exporter
+    spec:
+      containers:
+      - args:
+        - -nginx.scrape-uri
+        - http://web-server-service.default.svc.cluster.local/nginx_status
+        image: nginx/nginx-prometheus-exporter:0.10.0
+        name: nginx-exporter
+        ports:
+        - containerPort: 9113
 ---
 apiVersion: apps/v1
 kind: Deployment

@@ -3,6 +3,8 @@ kind: Kustomization
 
 resources:
   - deployment.yaml
+  - pv.yaml
+  - pvc.yaml
 
 configMapGenerator:
   - name: cm-promtail-config

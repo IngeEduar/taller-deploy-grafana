@@ -22,7 +22,7 @@ spec:
           name: promtail-container
           command: 
             - promtail
-            - --config.file=/etc/promtail/promtail-config.yml
+            - --config.file=/etc/promtail/promtail-config.yaml
           volumeMounts:
             - name: promtail-config
               mountPath: /etc/promtail/

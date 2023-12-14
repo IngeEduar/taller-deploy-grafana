@@ -687,7 +687,7 @@ data:
     access_log /var/log/nginx/access.log;
 
       server {
-        listen       80;
+        listen       8080;
         server_name  localhost;
 
         location / {
@@ -697,11 +697,11 @@ data:
       }
 kind: ConfigMap
 metadata:
-  name: cm-web-server-config-7b9t9fhk4h
+  name: cm-web-server-config-8268954hk8
 ---
 apiVersion: v1
 data:
-  admin-password: am4xNFIwQWc1WmVSaHg0ajc4M2xRWmVhSEVIMlVlYnROYnFkb1VEWQ==
+  admin-password: VlZ2djhjQVltQWI3RlBObmR2cmdqZmR5cW95a0djVHZQT2t3REk2Yw==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -1012,7 +1012,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: 0efef066ad30eeffbf8b2ea009f10ea6318ae4c68e1c30e2ea9aa585b750aa4d
+        checksum/secret: 8a3d30d894c60989ad9c33a4b8945134918c7acaec6230c0753c5bc56f33ce89
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
@@ -1422,7 +1422,7 @@ spec:
           name: nginx-logs
       volumes:
       - configMap:
-          name: cm-web-server-config-7b9t9fhk4h
+          name: cm-web-server-config-8268954hk8
         name: web-server-config
       - name: nginx-logs
         persistentVolumeClaim:

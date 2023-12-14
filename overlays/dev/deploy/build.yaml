@@ -524,32 +524,6 @@ metadata:
 ---
 apiVersion: v1
 data:
-  promtail-config.yaml: |
-    server:
-      http_listen_port: 9080
-      grpc_listen_port: 0
-
-    positions:
-      filename: /tmp/positions.yaml
-
-    clients:
-      - url: http://loki-service.monitoring.svc.cluster.local:3100/loki/api/v1/push
-
-    scrape_configs:
-      - job_name: system
-        static_configs:
-          - targets:
-              - localhost
-            labels:
-              job: nginx
-              __path__: /var/log/nginx/*log
-kind: ConfigMap
-metadata:
-  name: cm-promtail-config-75866fgg69
-  namespace: monitoring
----
-apiVersion: v1
-data:
   grafana.ini: |
     [analytics]
     check_for_updates = true
@@ -683,6 +657,31 @@ metadata:
 ---
 apiVersion: v1
 data:
+  promtail-config.yaml: |
+    server:
+      http_listen_port: 9080
+      grpc_listen_port: 0
+
+    positions:
+      filename: /tmp/positions.yaml
+
+    clients:
+      - url: http://loki-service.monitoring.svc.cluster.local:3100/loki/api/v1/push
+
+    scrape_configs:
+      - job_name: system
+        static_configs:
+          - targets:
+              - localhost
+            labels:
+              job: nginx
+              __path__: /var/log/nginx/*log
+kind: ConfigMap
+metadata:
+  name: cm-promtail-config-75866fgg69
+---
+apiVersion: v1
+data:
   nginx.conf: |-
     access_log /var/log/nginx/access.log;
 
@@ -701,7 +700,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  admin-password: MFd2eldPbVhpdmFHZnZ0VWlxT05TV0pMUGJGbWVLVjNVTFUyWWloNA==
+  admin-password: NHo3ZkhoaE5GcmRBR245MFdFRzBUSlNxbVlQVUEycVBDYkxaVlRkMw==
   admin-user: YWRtaW4=
   ldap-toml: ""
 kind: Secret
@@ -932,18 +931,6 @@ spec:
     path: /nginx
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: promtail-nginx-logs-pv
-spec:
-  accessModes:
-  - ReadWriteOnce
-  capacity:
-    storage: 1Gi
-  hostPath:
-    path: /nginx
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
@@ -962,18 +949,6 @@ spec:
   resources:
     requests:
       storage: 8Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: promtail-pvc-nginx-logs
-  namespace: monitoring
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -1012,7 +987,7 @@ spec:
         checksum/config: 95fc3c14d9595e90cd888ef5f7098cadb9e2811141d49dadd70e1d0f685f1ccd
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: 7f05c49c77754b6ef38081384a79bd5c3cb83a5f697df0627ae2ba4eb5b24c42
+        checksum/secret: 50f80e828c0b5b9ba6f677cbdc4fa325844b659609c58f796e62e02aed3b6a92
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
@@ -1364,7 +1339,6 @@ metadata:
     app: promtail
     rol: monitoring
   name: promtail-deployment
-  namespace: monitoring
 spec:
   replicas: 1
   selector:
@@ -1391,7 +1365,7 @@ spec:
         name: promtail-config
       - name: nginx-logs
         persistentVolumeClaim:
-          claimName: promtail-pvc-nginx-logs
+          claimName: pvc-nginx-logs
 ---
 apiVersion: apps/v1
 kind: Deployment
